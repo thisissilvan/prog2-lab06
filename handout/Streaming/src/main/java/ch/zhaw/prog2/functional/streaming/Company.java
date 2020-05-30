@@ -3,6 +3,7 @@ package ch.zhaw.prog2.functional.streaming;
 import ch.zhaw.prog2.functional.streaming.finance.CurrencyAmount;
 import ch.zhaw.prog2.functional.streaming.finance.Payment;
 import ch.zhaw.prog2.functional.streaming.humanresource.Employee;
+import ch.zhaw.prog2.functional.streaming.humanresource.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Company {
     private final List<Employee> employeeList;
@@ -29,24 +31,33 @@ public class Company {
     }
 
     /*
-     * Aufgabe a1)
+     * Aufgabe a1) OK
      */
     public List<String> getDistinctFirstnamesOfEmployees() {
-        return null;
+        return getAllEmployees().stream()
+            .map(Person::getFirstName)
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     /*
-     * Aufgabe a2)
+     * Aufgabe a2) OK
      */
     public String[] getDistinctLastnamesOfEmployees() {
-        return null;
+        return getAllEmployees().stream()
+            .map(Person::getLastName)
+            .distinct()
+            .toArray(String[]::new);
     }
 
     /*
-     * Aufgabe b)
+     * Aufgabe b) OK
      */
     public List<Employee> getEmployeesWorkingForCompany() {
-        return null;
+        return getAllEmployees().stream()
+            .filter(Employee::isWorkingForCompany)
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     /*
