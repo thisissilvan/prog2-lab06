@@ -3,8 +3,6 @@ package ch.zhaw.prog2.functional.streaming.finance;
 import ch.zhaw.prog2.functional.streaming.Company;
 import ch.zhaw.prog2.functional.streaming.humanresource.Employee;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

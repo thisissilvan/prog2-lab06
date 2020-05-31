@@ -102,13 +102,13 @@ public class Company {
      */
     public static final Function<Employee, Payment> paymentForEmployeeJanuary = employee -> {
         Payment payment = new Payment();
-
         CurrencyAmount yearlySalary = employee.getYearlySalary();
         int rolloutsPerYear = employee.getPaymentsPerYear().getValue();
         yearlySalary = yearlySalary.createModifiedAmount(amount -> amount / rolloutsPerYear);
         payment.setCurrencyAmount(yearlySalary).setBeneficiary(employee).setTargetAccount(employee.getAccount());
         return payment;
     };
+
     /*
      * Aufgabe g3) OK
      */
@@ -116,7 +116,6 @@ public class Company {
         Payment payment = paymentForEmployeeJanuary.apply(employee);
         payment.setCurrencyAmount(payment.getCurrencyAmount().createModifiedAmount(amount ->
             employee.getYearlySalary().getAmount() - (amount * 11)));
-
         return payment;
     };
 }
