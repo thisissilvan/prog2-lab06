@@ -63,7 +63,6 @@ public class Company {
     public List<Employee> getEmployeesByPredicate(Predicate<Employee> filterPredicate) {
         return getAllEmployees().stream()
             .filter(filterPredicate)
-            .distinct()
             .collect(Collectors.toList());
     }
 
