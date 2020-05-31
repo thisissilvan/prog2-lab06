@@ -9,7 +9,6 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Company {
     private final List<Employee> employeeList;
@@ -89,22 +88,35 @@ public class Company {
     }
 
     /*
-     * Aufgabe g1)
+     * Aufgabe g1) OK
      */
     public List<Payment> getPayments(Predicate<Employee> employeePredicate, Function<Employee, Payment> paymentForEmployee) {
-        return null;
+        return employeeList.stream()
+            .filter(employeePredicate)
+            .map(paymentForEmployee)
+            .collect(Collectors.toList());
     }
 
     /*
-     * Aufgabe g2)
+     * Aufgabe g2) OK
      */
     public static final Function<Employee, Payment> paymentForEmployeeJanuary = employee -> {
-        return null;
+        Payment payment = new Payment();
+
+        CurrencyAmount yearlySalary = employee.getYearlySalary();
+        int rolloutsPerYear = employee.getPaymentsPerYear().getValue();
+        yearlySalary = yearlySalary.createModifiedAmount(amount -> amount / rolloutsPerYear);
+        payment.setCurrencyAmount(yearlySalary).setBeneficiary(employee).setTargetAccount(employee.getAccount());
+        return payment;
     };
     /*
-     * Aufgabe g3)
+     * Aufgabe g3) OK
      */
     public static final Function<Employee, Payment> paymentForEmployeeDecember = employee -> {
-        return null;
+        Payment payment = paymentForEmployeeJanuary.apply(employee);
+        payment.setCurrencyAmount(payment.getCurrencyAmount().createModifiedAmount(amount ->
+            employee.getYearlySalary().getAmount() - (amount * 11)));
+
+        return payment;
     };
 }
