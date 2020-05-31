@@ -2,6 +2,7 @@ package ch.zhaw.prog2.functional.streaming;
 
 import ch.zhaw.prog2.functional.streaming.finance.Payment;
 import ch.zhaw.prog2.functional.streaming.humanresource.Employee;
+import ch.zhaw.prog2.functional.streaming.humanresource.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -65,5 +66,4 @@ class CompanyTest {
         assertNotNull(workingEmployees, "You have to implement the tested method");
         assertTrue(workingEmployees.size() >= 400, "default company has at least 400 working employees");
     }
-
 }

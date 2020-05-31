@@ -5,10 +5,7 @@ import ch.zhaw.prog2.functional.streaming.finance.Payment;
 import ch.zhaw.prog2.functional.streaming.humanresource.Employee;
 import ch.zhaw.prog2.functional.streaming.humanresource.Person;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -61,10 +58,13 @@ public class Company {
     }
 
     /*
-     * Aufgabe c) - Test in Klasse CompanyTestStudent
+     * Aufgabe c) - Test in Klasse CompanyTestStudent OK
      */
     public List<Employee> getEmployeesByPredicate(Predicate<Employee> filterPredicate) {
-        return null;
+        return getAllEmployees().stream()
+            .filter(filterPredicate)
+            .distinct()
+            .collect(Collectors.toList());
     }
 
     /**
